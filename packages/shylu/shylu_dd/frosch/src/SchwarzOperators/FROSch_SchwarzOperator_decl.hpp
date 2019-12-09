@@ -115,6 +115,7 @@ namespace FROSch {
         using DDInterfacePtr                    = RCP<DDInterface<SC,LO,GO,NO> >;
 
         using EntitySetPtr                      = RCP<EntitySet<SC,LO,GO,NO> >;
+        using EntitySetConstPtr                 = const EntitySetPtr;
         using EntitySetPtrVecPtr                = ArrayRCP<EntitySetPtr>;
         using EntitySetPtrConstVecPtr           = const EntitySetPtrVecPtr;
 
@@ -140,6 +141,7 @@ namespace FROSch {
         using ConstUN                           = const UN;
         using UNVec                             = Array<UN>;
         using UNVecPtr                          = ArrayRCP<UN>;
+        using ConstUNVecView                    = ArrayView<const UN>;
 
         using LOVec                             = Array<LO>;
         using LOVecPtr                          = ArrayRCP<LO>;
@@ -212,18 +214,18 @@ namespace FROSch {
     protected:
 
         CommPtr MpiComm_;
-        CommPtr SerialComm_;
+        CommPtr SerialComm_ = createSerialComm<int>();
 
         ConstXMatrixPtr K_;
 
         ParameterListPtr ParameterList_;
 
-        bool Verbose_;
+        bool Verbose_ = false;
 
-        bool IsInitialized_;
-        bool IsComputed_;
+        bool IsInitialized_ = false;
+        bool IsComputed_ = false;
 
-        ConstUN LevelID_;
+        ConstUN LevelID_ = 1;
     };
 
 }
