@@ -271,7 +271,7 @@ void StepperSubcycling<Scalar>::initialize()
          << "  ICConsistency  = " << this->getICConsistency() << "\n";
   }
   scIntegrator_->initialize();
-
+  scIntegrator_->getStepper()->initialize();
 
   if (stepperSCObserver_ == Teuchos::null) {
     isValidSetup = false;
